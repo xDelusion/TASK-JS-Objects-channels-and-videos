@@ -42,8 +42,8 @@ console.log(numberOfVideos(channels[0]));
  ****************************************************************/
 function channelHasVideo(videoTitle, channel) {
   // Your code here
-const matchVideo = channel.videos.find((vid) => (vid["title"].includes(videoTitle)));
-return matchVideo;
+//return channel.videos.find((vid) => (vid["title"].includes(videoTitle)));
+return channel.videos.some((vid) => vid["title"] === videoTitle);
 };
 console.log(channelHasVideo("The Universal S", channels[0]));
 console.log(channelHasVideo("The Universal S", channels[1]));
@@ -72,7 +72,7 @@ console.log(getChannelByName("PowerfulJRE", channels));
  ****************************************************************/
 function getChannelByVideoTitle(videoTitle, channels) {
   // Your code here
-  return channel.find((channel) => channel.videos.find((videos) => videoTitle))
+  return channels.find((channel) => channel.videos.find(((video) => video.title == videoTitle)));
 }
 console.log(getChannelByVideoTitle("The Universal S", channels));
 
@@ -86,11 +86,10 @@ console.log(getChannelByVideoTitle("The Universal S", channels));
  ****************************************************************/
 function searchChannels(query, channels) {
   // Your code here
-  channels.filter((channel) => 
+  return channels.filter((channel) => 
   channel.name.includes(query) || channel.description.includes(query));
 }
 console.log(searchChannels("the", channels));
-
 module.exports = {
   getChannelName,
   numberOfVideos,
